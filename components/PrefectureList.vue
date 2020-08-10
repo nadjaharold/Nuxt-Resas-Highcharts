@@ -1,18 +1,20 @@
 <template>
   <section class="checkbox__wrapper">
-    <h1>Check the Prefectures!</h1>
-    <div class="checkbox__list">
-      <v-checkbox
-        v-for="(prefSet, index) in getPrefSet"
-        :key="index"
-        v-model="prefCodes"
-        :label="prefSet.prefName"
-        name="prefCode"
-        color="#f51324"
-        :value="prefSet"
-        class="checkbox__list--item"
-      />
-    </div>
+    <v-card elevation="3">
+      <h1>Check the Prefectures!</h1>
+      <div class="checkbox__list">
+        <v-checkbox
+          v-for="(prefSet, index) in getPrefSet"
+          :key="index"
+          v-model="prefCodes"
+          :label="prefSet.prefName"
+          name="prefCode"
+          color="#f51324"
+          :value="prefSet"
+          class="checkbox__list--item"
+        />
+      </div>
+    </v-card>
   </section>
 </template>
 
@@ -74,13 +76,38 @@ export default {
   &__wrapper {
     max-width: 1200px;
     margin: 0 auto;
+    h1 {
+      padding: 20px 60px 10px;
+      @include breakpoint-min(xxl) {
+        padding: 20px 30px 5px;
+      }
+      @include breakpoint-min(sm) {
+        padding: 20px 10px 5px;
+      }
+    }
   }
   &__list {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    padding: 0px 60px 20px;
+    @include breakpoint-min(xxl) {
+      padding: 0px 30px 20px;
+    }
+    @include breakpoint-min(sm) {
+      padding: 0px 10px 20px;
+    }
     &--item {
       display: inline-block;
+      margin: 16px 8px 0 0;
+      @include breakpoint-min(xxl) {
+        margin: 8px 4px 0 0;
+      }
+      .v-input {
+        &__slot {
+          margin: 0;
+        }
+      }
     }
   }
 }
