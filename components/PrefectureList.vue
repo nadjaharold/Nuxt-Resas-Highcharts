@@ -15,7 +15,6 @@
           :key="index"
           v-model="prefCodes"
           :label="prefSet.prefName"
-          name="prefCode"
           color="#f51324"
           :value="prefSet"
           class="checkbox__list--item"
