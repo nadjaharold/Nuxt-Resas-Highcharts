@@ -68,6 +68,7 @@ export const actions = {
   },
   /* 1件取得するのに約100~300ms要するので初回に47件分一気に読み込むとロードが長くなる。
    * チェックボックス選択時に洗濯した1件のみ取得するようにする。
+   * axios-extensionsを用いて一度取得したらデータキャッシュするように実装済。
    */
   async fetchPopulation({ commit, getters }, prefCode) {
     const num = prefCode.length - 1
