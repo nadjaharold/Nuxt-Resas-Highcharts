@@ -1,7 +1,14 @@
 <template>
   <section class="checkbox__wrapper">
     <v-card elevation="3">
-      <h1>Check the Prefectures!</h1>
+      <h1>
+        Check the Prefectures!
+        <span>選択数の上限: 20, 現在の選択数: {{ prefCodes.length }}</span>
+        <span v-if="prefCodes.length > 20" class="over">
+          ※
+          選択可能上限数を超えました。いずれかのチェックを外すか、リロードしてください。
+        </span>
+      </h1>
       <div class="checkbox__list">
         <v-checkbox
           v-for="(prefSet, index) in getPrefSet"
@@ -29,7 +36,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getPrefSet']),
+    ...mapGetters(['getPrefSet', 'getCheckedPrefCodes']),
   },
   watch: {
     prefCodes(newPrefCodes, oldPrefCodes) {
@@ -48,11 +55,15 @@ export default {
         }
       })
       if (!numCode) {
-        // データ取得処理。
-        // 該当の県コードが既に取得済みデータか判定、取得済みであればスルー。
-        if (!checked.has(newPrefCodes)) {
-          this.fetchPopulation(newPrefCodes)
-          checked.add(newPrefCodes)
+        const checkedSize = this.getCheckedPrefCodes.length
+        // チェックボックス選択数が20を超えている場合は更新処理を走らせない。
+        if (checkedSize < 21) {
+          // データ取得処理。
+          // 該当の県コードが既に取得済みデータか判定、取得済みであればスルー。
+          if (!checked.has(newPrefCodes)) {
+            this.fetchPopulation(newPrefCodes)
+            checked.add(newPrefCodes)
+          }
         }
       } else {
         // データ削除処理。
@@ -76,6 +87,12 @@ export default {
   &__wrapper {
     max-width: 1200px;
     margin: 0 auto;
+    @include breakpoint-min(xxl) {
+      width: calc(100% - 60px);
+    }
+    @include breakpoint-min(sm) {
+      width: calc(100% - 30px);
+    }
     h1 {
       padding: 20px 60px 10px;
       @include breakpoint-min(xxl) {
@@ -83,6 +100,21 @@ export default {
       }
       @include breakpoint-min(sm) {
         padding: 20px 10px 5px;
+      }
+      span {
+        font-size: 16px;
+        color: #333333;
+        padding: 0 0 0 15px;
+        @include breakpoint-min(sm) {
+          font-size: 14px;
+          display: block;
+          padding: 10px 0 0 0px;
+        }
+      }
+      .over {
+        display: block;
+        color: #f51324;
+        padding: 10px 0 0 0;
       }
     }
   }
