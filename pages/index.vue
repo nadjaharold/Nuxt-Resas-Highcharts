@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <Header />
     <v-main>
       <PrefectureList />
       <Graph />
@@ -8,11 +9,13 @@
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
 import PrefectureList from '@/components/PrefectureList'
 import Graph from '@/components/Graph.vue'
 import { mapActions } from 'vuex'
 export default {
   components: {
+    Header,
     PrefectureList,
     Graph,
   },
