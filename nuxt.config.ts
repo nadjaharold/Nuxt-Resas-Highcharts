@@ -44,6 +44,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-components
    */
   components: true,
+  loading: false,
   /*
    ** Nuxt.js dev-modules
    */
