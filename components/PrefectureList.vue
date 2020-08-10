@@ -48,7 +48,7 @@ export default {
       if (!numCode) {
         // 該当の県コードが既に取得済みデータか判定、取得済みであればスルー。
         if (!checked.has(newPrefCodes)) {
-          // データの取得処理
+          this.fetchPopulation(newPrefCodes)
           checked.add(newPrefCodes)
         }
       } else {
