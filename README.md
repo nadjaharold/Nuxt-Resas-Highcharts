@@ -1,10 +1,8 @@
 # The Graph of Total Population Transition by Prefecture
 
-## About
-
 ![demo](demo.gif)
 
----
+## About
 
 This page uses ResasAPI with Highcharts!
 
