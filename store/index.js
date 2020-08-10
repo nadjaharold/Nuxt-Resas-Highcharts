@@ -58,6 +58,16 @@ export const mutations = {
       state.prefCodes = payload
     }
   },
+  // 押下済みのチェックボックスがクリックされた時に作動。押下された都道府県データを各配列から削除する。
+  mutationDeletePref(state, numCode) {
+    const arrayResult = state.result.filter((n) => {
+      if (n.prefectureCode !== numCode) {
+        return n
+      }
+    })
+    state.result = arrayResult
+    // console.log(JSON.stringify(state.result))
+  },
 }
 
 export const actions = {
@@ -89,5 +99,9 @@ export const actions = {
   // チェックボックスで変更を検知したら作動。
   actionUpdatePrefCodes({ commit }, newPrefCodes) {
     commit('mutationUpdatePrefCodes', newPrefCodes)
+  },
+  // チェックボックスで変更を検知したら作動。
+  actionDeletePref({ commit }, numCode) {
+    commit('mutationDeletePref', numCode)
   },
 }

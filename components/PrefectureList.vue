@@ -46,13 +46,16 @@ export default {
         }
       })
       if (!numCode) {
+        // データ取得処理。
         // 該当の県コードが既に取得済みデータか判定、取得済みであればスルー。
         if (!checked.has(newPrefCodes)) {
           this.fetchPopulation(newPrefCodes)
           checked.add(newPrefCodes)
         }
       } else {
-        // 削除処理
+        // データ削除処理。
+        this.actionDeletePref(numCode.prefCode)
+        checked.delete(numCode)
       }
     },
   },
