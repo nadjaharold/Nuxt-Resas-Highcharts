@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <Loading v-if="!isLoadingComplete" />
     <Header />
     <v-main>
       <PrefectureList />
@@ -12,15 +13,25 @@
 import Header from '@/components/Header.vue'
 import PrefectureList from '@/components/PrefectureList'
 import Graph from '@/components/Graph.vue'
+import Loading from '@/components/Loading.vue'
 import { mapActions } from 'vuex'
 export default {
   components: {
     Header,
     PrefectureList,
     Graph,
+    Loading,
+  },
+  data() {
+    return {
+      isLoadingComplete: false,
+    }
   },
   mounted() {
     this.fetchPrefectures()
+    setTimeout(() => {
+      this.isLoadingComplete = true
+    }, 1500)
   },
   methods: {
     ...mapActions(['fetchPrefectures']),
