@@ -1,3 +1,6 @@
+const RESAS_KEY = process.env.RESAS_KEY
+const API_URL = process.env.API_URL
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -94,5 +97,9 @@ export default {
         })
       }
     },
+  },
+  env: {
+    RESAS_KEY,
+    API_URL,
   },
 }
