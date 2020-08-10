@@ -1,15 +1,18 @@
 <template>
   <div class="wrapper">
     <PrefectureList />
+    <Graph />
   </div>
 </template>
 
 <script>
 import PrefectureList from '@/components/PrefectureList'
+import Graph from '@/components/Graph.vue'
 import { mapActions } from 'vuex'
 export default {
   components: {
     PrefectureList,
+    Graph,
   },
   mounted() {
     this.fetchPrefectures()
