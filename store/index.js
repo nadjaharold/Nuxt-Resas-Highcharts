@@ -70,7 +70,9 @@ export const mutations = {
 export const actions = {
   // mount時に都道府県データを非同期に取得。
   async fetchPrefectures({ commit }) {
-    const data = await this.$api.$get('/prefectures')
+    const data = await this.$api.$get(
+      'https://opendata.resas-portal.go.jp/api/v1/prefectures'
+    )
     if (data.result) commit('initPrefSet', data.result)
   },
   /* 1件取得するのに約100~300ms要するので初回に47件分一気に読み込むとロードが長くなる。
@@ -82,7 +84,7 @@ export const actions = {
     const prefCodeNumber = prefCode[num].prefCode
 
     const data = await this.$api.$get(
-      `/population/composition/perYear?prefCode=${prefCodeNumber}`
+      `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?prefCode=${prefCodeNumber}`
     )
     if (data.result) {
       const prefNameString = getters.getPrefNameByCode(prefCode[num])
