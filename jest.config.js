@@ -15,4 +15,10 @@ module.exports = {
     '<rootDir>/components/**/*.vue',
     '<rootDir>/pages/**/*.vue',
   ],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/node_modules',
+    '<rootDir>/.vscode',
+    '<rootDir>/coverage',
+    '<rootDir>/mixins',
+  ],
 }
