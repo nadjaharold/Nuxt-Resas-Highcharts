@@ -106,41 +106,41 @@ describe('store/index.js', () => {
         expect(store.getters.result).not.toContainEqual(res2)
       })
     })
-    describe('actions', () => {
-      let commit
-      beforeEach(() => {
-        commit = store.commit
-      })
-      describe('fetchPrefectures', () => {
-        test('prefSetが取得できること', async (done) => {
-          action = 'fetchPrefectures'
-          mockAxiosGetResult = {
-            fields: {
-              prefCode: pref1.prefCode,
-              prefName: pref2.prefName,
-            },
-          }
+  })
+  describe('actions', () => {
+    let commit
+    beforeEach(() => {
+      commit = store.commit
+    })
+    describe('fetchPrefectures', () => {
+      test('prefSetが取得できること', async (done) => {
+        action = 'fetchPrefectures'
+        mockAxiosGetResult = {
+          fields: {
+            prefCode: pref1.prefCode,
+            prefName: pref2.prefName,
+          },
+        }
 
-          await testedAction({ commit })
-          expect(store.getters.prefCodes).toContainEqual(pref1)
-          done()
-        })
+        await testedAction({ commit })
+        expect(store.getters.prefCodes).toContainEqual(pref1)
+        done()
       })
+    })
 
-      describe('fetchPopulation', () => {
-        test('resultが追加されること', async (done) => {
-          mockAxiosGetResult = {
-            name: `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?prefCode=${res1.prefCode}`,
-            fields: {
-              name: res1.name,
-              prefCode: res1.prefCode,
-            },
-          }
-          action = 'fetchPopulation'
-          await testedAction({ commit })
-          expect(store.getters.result).toContainEqual(res1)
-          done()
-        })
+    describe('fetchPopulation', () => {
+      test('resultが追加されること', async (done) => {
+        mockAxiosGetResult = {
+          name: `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?prefCode=${res1.prefCode}`,
+          fields: {
+            name: res1.name,
+            prefCode: res1.prefCode,
+          },
+        }
+        action = 'fetchPopulation'
+        await testedAction({ commit })
+        expect(store.getters.result).toContainEqual(res1)
+        done()
       })
     })
   })

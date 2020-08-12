@@ -21,4 +21,5 @@ module.exports = {
     '<rootDir>/coverage',
     '<rootDir>/mixins',
   ],
+  transformIgnorePatterns: ['node_modules/(?!epic-spinners)'],
 }

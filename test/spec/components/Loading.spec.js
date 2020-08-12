@@ -7,3 +7,4 @@ describe('Loading', () => {
   expect(wrapper.classes()).toContain('loading__contents')
   expect(wrapper.is('section')).toBe(true)
 })
+// https://github.com/epicmaxco/epic-spinners/issues/13
