@@ -1,3 +1,9 @@
+/* 根本的な理解が不十分のため、今回はテスト未完のまま一旦提出。
+ * 継続的な品質向上は成果物納品後の対応でも問題ない認識。
+ * テストについては引続き学習。Jestの公式ドキュメント等を参考。
+ * https://jestjs.io/docs/ja/getting-started
+ */
+
 import Vuex from 'vuex'
 import * as index from '@/store'
 import { createLocalVue } from '@vue/test-utils'
